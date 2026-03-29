@@ -6,28 +6,27 @@ import { UserIdSchema, EmailSchema } from '@starter/domain';
 import type { UserRepository } from '@starter/application';
 
 export class DrizzleUserRepository implements UserRepository {
+  private toDomain(row: typeof users.$inferSelect): User {
+    return {
+      id: UserIdSchema.parse(row.id),
+      email: EmailSchema.parse(row.email),
+      name: row.name,
+      createdAt: row.createdAt,
+    };
+  }
+
   async findById(id: UserId): Promise<User | null> {
     const result = await db.select().from(users).where(eq(users.id, id));
-    if (result.length === 0) return null;
-    const user = result[0];
-    return {
-      id: UserIdSchema.parse(user.id),
-      email: EmailSchema.parse(user.email),
-      name: user.name,
-      createdAt: user.createdAt,
-    };
+    const row = result[0];
+    if (!row) return null;
+    return this.toDomain(row);
   }
 
   async findByEmail(email: Email): Promise<User | null> {
     const result = await db.select().from(users).where(eq(users.email, email));
-    if (result.length === 0) return null;
-    const user = result[0];
-    return {
-      id: UserIdSchema.parse(user.id),
-      email: EmailSchema.parse(user.email),
-      name: user.name,
-      createdAt: user.createdAt,
-    };
+    const row = result[0];
+    if (!row) return null;
+    return this.toDomain(row);
   }
 
   async save(userData: CreateUser): Promise<User> {
@@ -36,11 +35,10 @@ export class DrizzleUserRepository implements UserRepository {
       name: userData.name,
     }).returning();
 
-    return {
-      id: UserIdSchema.parse(inserted.id),
-      email: EmailSchema.parse(inserted.email),
-      name: inserted.name,
-      createdAt: inserted.createdAt,
-    };
+    if (!inserted) {
+      throw new Error('Failed to insert user');
+    }
+
+    return this.toDomain(inserted);
   }
 }

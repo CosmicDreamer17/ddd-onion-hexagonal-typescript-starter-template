@@ -17,14 +17,16 @@ export class DrizzleUserRepository implements UserRepository {
 
   async findById(id: UserId): Promise<User | null> {
     const result = await db.select().from(users).where(eq(users.id, id));
-    if (result.length === 0) return null;
-    return this.toDomain(result[0]);
+    const row = result[0];
+    if (!row) return null;
+    return this.toDomain(row);
   }
 
   async findByEmail(email: string): Promise<User | null> {
     const result = await db.select().from(users).where(eq(users.email, email));
-    if (result.length === 0) return null;
-    return this.toDomain(result[0]);
+    const row = result[0];
+    if (!row) return null;
+    return this.toDomain(row);
   }
 
   async save(userData: CreateUser): Promise<User> {
@@ -32,6 +34,10 @@ export class DrizzleUserRepository implements UserRepository {
       email: userData.email,
       name: userData.name,
     }).returning();
+
+    if (!inserted) {
+      throw new Error('Failed to insert user');
+    }
 
     return this.toDomain(inserted);
   }

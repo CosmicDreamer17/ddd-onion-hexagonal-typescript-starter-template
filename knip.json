@@ -1,13 +1,8 @@
 {
   "$schema": "https://unpkg.com/knip@next/schema.json",
-  "project": ["**/*.ts", "**/*.tsx"],
-  "ignore": ["node_modules/**", "dist/**"],
-  "ignoreExportsUsedInFile": true,
-  "rules": {
-    "files": "warn",
-    "dependencies": "warn",
-    "unlisted": "error",
-    "exports": "warn",
-    "types": "warn"
+  "workspaces": {
+    "packages/*": { "entry": "src/index.ts" },
+    "apps/api": { "entry": ["src/index.ts", "src/dev.ts"] },
+    "apps/web": { "entry": "src/app/page.tsx" }
   }
 }

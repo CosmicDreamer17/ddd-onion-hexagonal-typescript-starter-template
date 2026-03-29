@@ -18,9 +18,19 @@ export default [
     },
     rules: {
       ...tsPlugin.configs.recommended.rules,
-      "@typescript-eslint/no-unused-vars": "error",
+      "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }],
       "@typescript-eslint/no-explicit-any": "error",
-      "import/no-extraneous-dependencies": "error",
+      "import/no-extraneous-dependencies": ["error", { 
+        "devDependencies": [
+          "**/*.test.ts", 
+          "**/*.test.tsx", 
+          "scripts/**", 
+          "**/dev.ts", 
+          "**/drizzle.config.ts",
+          "**/next.config.mjs",
+          "**/*.config.*"
+        ] 
+      }],
       "@typescript-eslint/consistent-type-imports": "error",
     },
   },

@@ -11,6 +11,7 @@
     "sourceMap": true,
     "composite": true,
     "baseUrl": ".",
+    "ignoreDeprecations": "6.0",
     "paths": {
       "@starter/*": ["packages/*/src"]
     }

@@ -8,6 +8,7 @@ const app = new Hono().basePath('/api');
 
 const userRepository = new DrizzleUserRepository();
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const routes = app.post(
   '/register',
   zValidator('json', CreateUserSchema),
@@ -25,5 +26,5 @@ const routes = app.post(
 );
 
 export type AppType = typeof routes;
-
+export { app };
 export default handle(app);

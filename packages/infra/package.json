@@ -2,9 +2,14 @@
   "name": "@starter/infra",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.ts",
   "scripts": {
-    "lint": "eslint .", "typecheck": "tsc --noEmit"
+    "db:generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +24,8 @@
   "devDependencies": {
     "@types/node": "^25.5.0",
     "drizzle-kit": "^0.31.10",
-    "typescript": "^6.0.2"
-  }
+    "typescript": "^6.0.2",
+    "vitest": "^4.1.2"
+  },
+  "type": "module"
 }

@@ -2,7 +2,6 @@
   "name": "ddd-onion-hexagonal-typescript-starter-template",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "verify": "bash scripts/verify.sh",
     "lint": "turbo lint",
@@ -23,10 +22,8 @@
     "eslint": "^10.1.0",
     "eslint-plugin-import": "^2.32.0",
     "knip": "^6.1.0",
-    "prettier": "^3.8.1",
-    "ts-node": "^10.9.2",
     "turbo": "^2.8.21",
-    "typescript": "^6.0.2",
-    "zod": "^4.3.6"
-  }
+    "typescript": "^6.0.2"
+  },
+  "type": "module"
 }

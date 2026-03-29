@@ -1,8 +1,9 @@
 import { eq } from 'drizzle-orm';
-import { db } from './db';
-import { users } from './schema';
-import { User, CreateUser, UserId, UserIdSchema, EmailSchema } from '@starter/domain';
-import { UserRepository } from '@starter/application';
+import { db } from './db.js';
+import { users } from './schema.js';
+import type { User, CreateUser, UserId } from '@starter/domain';
+import { UserIdSchema, EmailSchema } from '@starter/domain';
+import type { UserRepository } from '@starter/application';
 
 export class DrizzleUserRepository implements UserRepository {
   async findById(id: UserId): Promise<User | null> {

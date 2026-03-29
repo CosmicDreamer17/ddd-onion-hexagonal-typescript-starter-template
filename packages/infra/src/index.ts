@@ -8,8 +8,8 @@ import type { UserRepository } from '@starter/application';
 export class DrizzleUserRepository implements UserRepository {
   async findById(id: UserId): Promise<User | null> {
     const result = await db.select().from(users).where(eq(users.id, id));
-    if (result.length === 0) return null;
     const user = result[0];
+    if (!user) return null;
     return {
       id: UserIdSchema.parse(user.id),
       email: EmailSchema.parse(user.email),
@@ -20,8 +20,8 @@ export class DrizzleUserRepository implements UserRepository {
 
   async findByEmail(email: string): Promise<User | null> {
     const result = await db.select().from(users).where(eq(users.email, email));
-    if (result.length === 0) return null;
     const user = result[0];
+    if (!user) return null;
     return {
       id: UserIdSchema.parse(user.id),
       email: EmailSchema.parse(user.email),
@@ -35,6 +35,10 @@ export class DrizzleUserRepository implements UserRepository {
       email: userData.email,
       name: userData.name,
     }).returning();
+
+    if (!inserted) {
+      throw new Error('Failed to insert user');
+    }
 
     return {
       id: UserIdSchema.parse(inserted.id),

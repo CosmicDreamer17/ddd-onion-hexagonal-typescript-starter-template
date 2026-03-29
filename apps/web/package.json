@@ -16,13 +16,13 @@
   "license": "MIT",
   "packageManager": "pnpm@10.18.3",
   "dependencies": {
-    "@starter/api": "workspace:*",
     "hono": "^4.12.9",
     "next": "^16.2.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
   },
   "devDependencies": {
+    "@starter/api": "workspace:*",
     "@types/node": "^25.5.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",

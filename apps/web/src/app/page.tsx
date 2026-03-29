@@ -4,7 +4,7 @@ import { hc } from 'hono/client';
 import type { AppType } from '@starter/api';
 import { useState } from 'react';
 
-const client = hc<AppType>('http://localhost:3000');
+const client = hc<AppType>(process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3000');
 
 export default function Home() {
   const [email, setEmail] = useState('');

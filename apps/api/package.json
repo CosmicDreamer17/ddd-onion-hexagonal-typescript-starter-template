@@ -18,6 +18,7 @@
   "packageManager": "pnpm@10.18.3",
   "dependencies": {
     "@hono/zod-validator": "^0.7.6",
+    "@starter/application": "workspace:*",
     "@starter/domain": "workspace:*",
     "@starter/infra": "workspace:*",
     "hono": "^4.12.9"

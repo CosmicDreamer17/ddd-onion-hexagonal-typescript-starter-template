@@ -1,5 +1,8 @@
 import { serve } from '@hono/node-server';
-import { app } from './index.js';
+import { DrizzleUserRepository } from '@starter/infra';
+import { createApp } from './index.js';
+
+const { app } = createApp(new DrizzleUserRepository());
 
 const port = process.env.PORT ? parseInt(process.env.PORT, 10) : 3001;
 

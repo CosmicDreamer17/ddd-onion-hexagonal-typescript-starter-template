@@ -1,7 +1,7 @@
 import { eq } from 'drizzle-orm';
 import { db } from './db.js';
 import { users } from './schema.js';
-import type { User, CreateUser, UserId } from '@starter/domain';
+import type { User, CreateUser, UserId, Email } from '@starter/domain';
 import { UserIdSchema, EmailSchema } from '@starter/domain';
 import type { UserRepository } from '@starter/application';
 
@@ -18,7 +18,7 @@ export class DrizzleUserRepository implements UserRepository {
     };
   }
 
-  async findByEmail(email: string): Promise<User | null> {
+  async findByEmail(email: Email): Promise<User | null> {
     const result = await db.select().from(users).where(eq(users.email, email));
     if (result.length === 0) return null;
     const user = result[0];

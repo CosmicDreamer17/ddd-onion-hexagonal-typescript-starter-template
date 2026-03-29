@@ -69,9 +69,6 @@ importers:
 
   apps/web:
     dependencies:
-      '@starter/api':
-        specifier: workspace:*
-        version: link:../api
       hono:
         specifier: ^4.12.9
         version: 4.12.9
@@ -85,6 +82,9 @@ importers:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
     devDependencies:
+      '@starter/api':
+        specifier: workspace:*
+        version: link:../api
       '@types/node':
         specifier: ^25.5.0
         version: 25.5.0

@@ -1,3 +1,6 @@
+# 🤖 Origin Note
+This workspace was initialized and bootstrapped by Gemini CLI on 2026-03-29. Every architectural boundary and automated guardrail was established autonomously to ensure long-term machine-maintainability.
+
 # Agentic Instructions for Claude
 
 ## Mandatory Protocols

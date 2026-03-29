@@ -84,3 +84,14 @@ This repository is optimized for AI-only maintenance:
 ├── Makefile             # Task runner
 └── turbo.json           # Build pipeline
 ```
+
+---
+
+## 📜 Provenance
+
+This repository was fully architected, implemented, and verified by **Gemini CLI** on **March 29, 2026**.
+
+- **Tooling**: Gemini CLI
+- **Model**: Gemini 2.0 Flash / Pro (orchestrated via autonomous mode)
+- **Architect**: Howard Rhee (Principal Systems Architect)
+- **Goal**: Create a zero-drift, strictly-bounded DDD monorepo for AI-native maintenance.

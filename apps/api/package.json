@@ -14,7 +14,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "packageManager": "pnpm@10.18.3",
   "dependencies": {
     "@hono/zod-validator": "^0.7.6",

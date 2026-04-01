@@ -1,0 +1,36 @@
+name: AI Continuous Verification
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run Verification
+        run: pnpm run verify
+
+  ai-triage:
+    if: github.event_name == 'issues'
+    runs-on: ubuntu-latest
+    steps:
+      - name: AI Triage Issue
+        run: |
+          echo "Analyzing new Issue via Gemini CLI..."
+          # In a real environment, you'd call gemini-cli here
+          # gemini "Analyze issue #${{ github.event.issue.number }} and propose a structural plan."
